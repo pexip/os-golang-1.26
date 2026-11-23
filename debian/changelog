@@ -1,3 +1,89 @@
+golang-1.26 (1.26.11-1~bpo13+1) trixie-backports; urgency=medium
+
+  * Team upload
+  * Rebuild for trixie-backports.
+
+ -- Mathias Gibbens <gibmat@debian.org>  Fri, 13 Nov 2026 14:20:41 +0000
+
+golang-1.26 (1.26.11-1) unstable; urgency=medium
+
+  * New upstream version 1.26.11
+    - CVE-2026-97054: net/http: HTTP/1 server crash due to MaxBytesReader
+      header race
+    - CVE-2026-97033: cmd/go: unexpected code execution via --sysroot,
+      -target, -isysroot, -Wl,-syslibroot, and -x cgo flags
+    - CVE-2026-97034: cmd/go: arbitrary command execution via GCC spec files
+      in cgo linker search directories
+    - CVE-2026-97035: cmd/go: unexpected code execution and arbitrary file
+      write via Clang -gen-* and GCC -gnat* flags in cgo
+    - CVE-2026-97036: cmd/go: arbitrary code execution during build on darwin
+      via "-l to_library" in cgo
+    - CVE-2026-97037: cmd/go: linker script injection via split -Wl, flags and
+      Darwin or symbol linker flags in cgo
+    - CVE-2026-97038: cmd/go: arbitrary code execution via crafted .syso files
+      and cgo linker input files
+    - CVE-2026-97039: cmd/go: flag sanitization bypass via "#cgo pkg-config:"
+      directives
+    - CVE-2026-97040: cmd/go, cmd/link: cgo directive injection via .syso
+      files disguised as Go object files
+    - CVE-2026-97041: cmd/compile, cmd/link: host linker flag injection via
+      //go:cgo_* directives
+    - CVE-2026-97042: cmd/cgo, cmd/compile, cmd/link: linker flag injection
+      via cgo_import_dynamic and PE DLL names
+    - CVE-2026-97043: cmd/go, cmd/compile: unexpected code execution via
+      escaped quotes in //go:cgo_ldflag
+
+ -- Dr. Tobias Quathamer <toddy@debian.org>  Tue, 10 Nov 2026 22:12:07 +0100
+
+golang-1.26 (1.26.10-1) unstable; urgency=medium
+
+  * New upstream version 1.26.10
+    - CVE-2026-111943: crypto/x509: distrust a handful of intermediates
+      On most platforms, Go uses the given system root certificates. However,
+      in some narrower cases, the system trust stores may not be updated
+      without further action. To defend against the narrower set of cases that
+      may remain affected, a denylist was added in crypto/x509 to return an
+      error when calling Verify with any of the known intermediate
+      certificates that are no longer considered to be trustworthy.
+
+ -- Dr. Tobias Quathamer <toddy@debian.org>  Sat, 24 Oct 2026 00:01:40 +0200
+
+golang-1.26 (1.26.9-1) unstable; urgency=medium
+
+  * New upstream version 1.26.9
+    - CVE-2026-56866: net/http: HTTP/1 client connection desynchronization
+      after CONNECT rejection
+    - CVE-2026-78659: net/http: HTTP/2 server memory exhaustion due to Trailer
+      headers
+    - CVE-2026-78660: net/http/internal/http2: transport accepts multiple
+      Content-Length headers
+    - CVE-2026-78667: net/http: lack of limit on size of parsed Range headers
+    - CVE-2026-94439: net/http: HTTP/1 server connection desynchronization
+      after 2xx CONNECT response
+    - CVE-2026-94440: net/textproto, mime/multipart: memory limit bypass when
+      parsing MIME headers
+    - CVE-2026-94444: cmd/go: malicious GOMODPROXY can cause
+      golang.org/fips140 checksum bypass
+    - CVE-2026-94447: cmd/go: malicious GOMODPROXY can cause
+      golang.org/toolchain checksum bypass
+    - CVE-2026-94448: html/template: reset context tracking on consecutive
+      template expressions
+    - CVE-2026-97030: html/template: XSS via missing ES2015+ keywords in
+      regexpPrecederKeywords
+    - CVE-2026-97031: crypto/tls: reject malformed ECH outer extension
+      references
+    - CVE-2026-97032: net/http: HTTP/2 server crash due to HPACK encoder race
+
+ -- Dr. Tobias Quathamer <toddy@debian.org>  Thu, 08 Oct 2026 21:45:25 +0200
+
+golang-1.26 (1.26.8-2) unstable; urgency=medium
+
+  * Add golang-1.26 to Build-Depends.
+    golang-1.25 has been removed from unstable, so this package
+    will FTBFS otherwise. (Closes: #1147465)
+
+ -- Dr. Tobias Quathamer <toddy@debian.org>  Tue, 06 Oct 2026 22:11:57 +0200
+
 golang-1.26 (1.26.8-1~bpo13+1+deb13u0+pexip25u2) pexip-trixie; urgency=medium
 
   * Rebuild building against golang-1.26.
